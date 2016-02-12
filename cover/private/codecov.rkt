@@ -54,7 +54,7 @@
   (reverse line-cover))
 
 (module+ test
-  (define-runtime-path path "tests/not-run.rkt")
+  (define-runtime-path path "tests/test-not-run.rkt")
   (let ()
     (parameterize ([current-cover-environment (make-cover-environment)])
       (define file (path->string (simplify-path path)))
