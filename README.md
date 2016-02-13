@@ -1,7 +1,7 @@
 # Cover Codecov
 
-[![Build Status](https://travis-ci.org/rpless/cover-codecov.svg?branch=master)](https://travis-ci.org/rpless/cover-codecov)
-[![codecov.io](https://codecov.io/github/rpless/cover-codecov/coverage.svg?branch=master)](https://codecov.io/github/rpless/cover-codecov?branch=master)
+[![Build Status](https://travis-ci.org/codecov/codecov-racket.svg?branch=master)](https://travis-ci.org/codecov/codecov-racket)
+[![codecov.io](https://codecov.io/github/codecov/codecov-racket/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-racket?branch=master)
 
 Adds [Codecov](https://codecov.io/) support to [Cover](https://github.com/florence/cover).
 
