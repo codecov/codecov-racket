@@ -18,7 +18,7 @@
 
 ;; ->
 ;; Submit cover information to Codecov
-(define (generate-codecov-coverage coverage files _dir)
+(define (generate-codecov-coverage coverage files [_dir "coverage"])
   (define json (codecov-json coverage files))
   (define-values (status resp port) (send-codecov! json))
   (displayln status)
