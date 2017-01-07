@@ -33,6 +33,7 @@ script:
   - raco test $TRAVIS_BUILD_DIR # run tests. you wrote tests, right?
 
 after_success:
+  - raco pkg install --deps search-auto cover cover-codecov
   - raco cover -f codecov -d $TRAVIS_BUILD_DIR/coverage . # generate coverage information for coveralls
 ```
 The above Travis configuration will install any project dependencies, test your project, and report coverage information to Codecov.
