@@ -1,0 +1,29 @@
+image: frolvlad/alpine-glibc
+
+variables:
+  RACKET_DIR: "$HOME/racket"
+  RACKET_VERSION: "6.8" # Set this to the version you want to use
+
+before_script:
+  - echo "ipv6" >> /etc/modules
+  - apk update
+  - apk add git curl bash openssl sqlite-libs
+  - git clone https://github.com/greghendershott/travis-racket.git ~/ci-racket
+  - cat ~/ci-racket/install-racket.sh | bash # pipe to bash not sh!
+  - export PATH="$RACKET_DIR/bin:$PATH" #install-racket.sh can't set for us
+  - raco pkg install --auto --clone ../cover https://github.com/florence/cover
+  - raco pkg install --auto $CI_PROJECT_DIR
+
+stages:
+  - test
+  - cover
+
+test:
+  stage: test
+  script:
+    - raco test $CI_PROJECT_DIR
+
+cover:
+  stage: cover
+  script:
+    - raco cover -f codecov .
