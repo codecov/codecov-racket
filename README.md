@@ -47,6 +47,10 @@ of the CI configuration file:
 ```yml
 image: frolvlad/alpine-glibc
 
+variables:
+  RACKET_DIR: "$HOME/racket"
+  RACKET_VERSION: "6.8" # use the desired version of racket
+
 before_script:
   - echo "ipv6" >> /etc/modules
   - apk update
