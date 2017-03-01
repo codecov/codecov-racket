@@ -11,7 +11,8 @@
   net/uri-codec
   cover/private/file-utils
   "ci-service.rkt"
-  "travis-service.rkt")
+  "travis-service.rkt"
+  "gitlab-service.rkt")
 
 (module+ test
   (require rackunit cover racket/runtime-path))
@@ -73,7 +74,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define services
-  (hash travis-ci? travis-service@))
+  (hash travis-ci? travis-service@
+        gitlab-ci? gitlab-service@))
 
 (define CODECOV_HOST "codecov.io")
 
