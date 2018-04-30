@@ -80,6 +80,8 @@ cover:
 
 ## Use with CircleCI
 
+*added in version 0.2.0*
+
 CircleCI is (mostly) based on Docker, so you'll have to choose a Docker image to
 use as your base Racket installation. Then in your `.circleci/config.yml`
 configuration run the same cover commands as the Travis and Gitlab examples:
