@@ -77,7 +77,6 @@ cover:
     - raco cover -f codecov $CI_PROJECT_DIR
 ```
 
-
 ## Use with CircleCI
 
 *added in version 0.2.0*
