@@ -107,6 +107,6 @@ jobs:
           name: Cover
           command: raco cover -f codecov -p my-package
           environment:
-            COVER_TOKEN: ... # your codecov project UUID token
-            COVER_ACCESS_TOKEN: ... # API token, only needed for private repos
+            CODECOV_TOKEN: ... # your codecov project UUID token
+            CODECOV_ACCESS_TOKEN: ... # API token, only needed for private repos
 ```
