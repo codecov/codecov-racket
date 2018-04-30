@@ -5,7 +5,8 @@
 
 Adds [Codecov](https://codecov.io/) support to [Cover](https://github.com/florence/cover).
 
-_Note_:  The currently supported methods of posting data to [Codecov](https://codecov.io/) are [Travis CI](https://travis-ci.org/) and [Gitlab CI](https://about.gitlab.com/gitlab-ci/).
+_Note_:  The currently supported methods of posting data to [Codecov](https://codecov.io/) are [Travis CI](https://travis-ci.org/), [Gitlab CI](https://about.gitlab.com/gitlab-ci/),
+and [Circle CI](https://circleci.com/).
 
 ## Use with Travis CI
 First enable your repository on Travis and Codecov.
@@ -74,4 +75,37 @@ cover:
   script:
     - raco pkg install --auto cover cover-codecov
     - raco cover -f codecov $CI_PROJECT_DIR
+```
+
+
+## Use with CircleCI
+
+CircleCI is (mostly) based on Docker, so you'll have to choose a Docker image to
+use as your base Racket installation. Then in your `.circleci/config.yml`
+configuration run the same cover commands as the Travis and Gitlab examples:
+
+```yml
+version: 2
+jobs:
+  build:
+    docker:
+      - image: jackfirth/racket:6.12 # or build your own image
+    steps:
+      - checkout
+      - run:
+          name: Install
+          # install working directory (which is the repo root) as a package
+          command: raco pkg install --auto --link --name my-package
+      - run:
+          name: Test
+          command: raco test -p my-package
+      - run:
+          name: Install Cover
+          command: raco pkg install --auto cover cover-codecov
+      - run:
+          name: Cover
+          command: raco cover -f codecov -p my-package
+          environment:
+            COVER_TOKEN: ... # your codecov project UUID token
+            COVER_ACCESS_TOKEN: ... # API token, only needed for private repos
 ```

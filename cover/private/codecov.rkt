@@ -12,7 +12,8 @@
   cover/private/file-utils
   "ci-service.rkt"
   "travis-service.rkt"
-  "gitlab-service.rkt")
+  "gitlab-service.rkt"
+  "circle-service.rkt")
 
 (module+ test
   (require rackunit cover racket/runtime-path))
@@ -75,7 +76,8 @@
 
 (define services
   (hash travis-ci? travis-service@
-        gitlab-ci? gitlab-service@))
+        gitlab-ci? gitlab-service@
+        circle-ci? circle-service@))
 
 (define CODECOV_HOST "codecov.io")
 
