@@ -74,8 +74,16 @@
 ;; Send Codecov data
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define services
-  (for/hash ([p (find-relevant-directories '(cover-build-services))])
-    (match ((get-info/full p) 'cover-build-services)
+  (for*/hash ([p (find-relevant-directories '(cover-build-services))]
+              [x (in-value ((get-info/full p) 'cover-build-services))]
+              #:when (unless (list? x)
+                       (error 'cover-codecov
+                              "Error loading cover services from ~a, expected a list, got ~a"
+                              p
+                              x))
+              [l (in-list x)])
+    
+    (match l
       [(list name loc pred unit@)
        (define ?
          (contract (dynamic-require loc pred)
