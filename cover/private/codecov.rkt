@@ -86,13 +86,13 @@
     (match l
       [(list name loc pred unit@)
        (define ?
-         (contract (dynamic-require loc pred)
-                   (-> any/c)
+         (contract (-> any/c)
+                   (dynamic-require loc pred)
                    'cover/codecov
                    p))
        (define @
-         (contract (dynamic-require unit@)
-                   (unit/c (import) (export ci-service^))
+         (contract (unit/c (import) (export ci-service^))
+                   (dynamic-require loc unit@)
                    'cover/codecov
                    p))
        (values ? @)]
