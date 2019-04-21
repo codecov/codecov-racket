@@ -74,7 +74,7 @@
 ;; Send Codecov data
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define services
-  (for/hash ([p (find-relevant-directories 'cover-build-services)])
+  (for/hash ([p (find-relevant-directories '(cover-build-services))])
     (match ((get-info/full p) 'cover-build-services)
       [(list name loc pred unit@)
        (define ?
