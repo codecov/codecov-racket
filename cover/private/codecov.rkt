@@ -10,9 +10,10 @@
   net/http-client
   net/uri-codec
   cover/private/file-utils
-  "ci-service.rkt"
-  "travis-service.rkt"
-  "gitlab-service.rkt")
+  setup/getinfo
+  racket/match
+  racket/contract
+  "ci-service.rkt")
 
 (module+ test
   (require rackunit cover racket/runtime-path))
@@ -72,10 +73,27 @@
 
 ;; Send Codecov data
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (define services
-  (hash travis-ci? travis-service@
-        gitlab-ci? gitlab-service@))
+  (for/hash ([p (find-relevant-directories 'cover-build-services)])
+    (match ((get-info/full p) 'cover-build-services)
+      [(list name loc pred unit@)
+       (define ?
+         (contract (dynamic-require loc pred)
+                   (-> any/c)
+                   'cover/codecov
+                   p))
+       (define @
+         (contract (dynamic-require unit@)
+                   (unit/c (import) (export ci-service^))
+                   'cover/codecov
+                   p))
+       (values ? @)]
+       
+      [e
+       (error 'cover-codecov
+              "Error loading cover services from ~a, expected four element list, got ~a"
+              p
+              e)])))
 
 (define CODECOV_HOST "codecov.io")
 
