@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/codecov/codecov-racket.svg?branch=master)](https://travis-ci.org/codecov/codecov-racket)
 [![codecov.io](https://codecov.io/github/codecov/codecov-racket/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-racket?branch=master)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-racket.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-racket?ref=badge_shield)
 
 Adds [Codecov](https://codecov.io/) support to [Cover](https://github.com/florence/cover).
 
@@ -75,3 +76,7 @@ cover:
     - raco pkg install --auto cover cover-codecov
     - raco cover -f codecov $CI_PROJECT_DIR
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-racket.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-racket?ref=badge_large)
