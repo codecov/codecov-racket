@@ -1,5 +1,5 @@
 #lang racket/base
-(provide github-service@ github-env?)
+(provide github-service@ github-ci?)
 
 (require "ci-service.rkt" racket/unit racket/list racket/string)
 
