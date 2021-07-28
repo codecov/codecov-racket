@@ -14,7 +14,7 @@
     (list (cons 'service "custom")
           (cons 'token (getenv "CODECOV_TOKEN"))
           ;; TODO: this won't work for tags
-          (cons 'branch (substring (getenv "GITHUB_REF") (string-length "refs/heads/")))
+          (cons 'branch (string-trim (getenv "GITHUB_REF") #px"refs/(heads|tags)/"))
           (cons 'job (getenv "GITHUB_JOB"))
           (cons 'slug (getenv "GITHUB_REPOSITORY"))
           (cons 'build (getenv "GITHUB_RUN_ID"))
